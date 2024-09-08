@@ -1,0 +1,104 @@
+/* General Styles */
+body {
+    background-image: url('/image/AdobeStock_729554422_Preview.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #7abced; /* Light background for navbar */
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+}
+
+.container {
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(108, 205, 239, 0.4); /* Semi-transparent background color */
+    backdrop-filter: blur(10px); /* Blurry effect */
+    color: black;
+    text-align: left;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select, input {
+    width: calc(100% - 22px); /* Full-width input minus padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="number"], input[type="date"], input[type="time"] {
+    width: 100%;
+}
+
+button {
+    background-color: #5bc0de;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #31b0d5;
+}
+
+ul#produceList {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+ul#produceList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Optional Progress Bar */
+.progress-bar {
+    height: 10px;
+    background-color: #16cbcb;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.actions button {
+    margin: 0 5px;
+    background-color: #e96464;
+}
+
+.actions button:hover {
+    background-color: #c82333;
+}

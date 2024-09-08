@@ -1,0 +1,49 @@
+doctype html
+| PASTE YOUR HTML CODE HERE
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Registration Form
+  link(rel='stylesheet' href='public/css/signup.css')
+.container
+  h1 Registration Form
+  form#registrationForm
+    .form-group
+      label(for='name') Name:
+      input#name(type='text' name='name' required='')
+      span#nameError.error-message
+    .form-group
+      label(for='email') Email:
+      input#email(type='email' name='email' required='')
+      span#emailError.error-message
+    .form-group
+      label(for='password') Password:
+      input#password(type='password' name='password' required='')
+      span#passwordError.error-message
+    .form-group
+      label(for='confirmPassword') Confirm Password:
+      input#confirmPassword(type='password' name='confirmPassword' required='')
+      span#confirmPasswordError.error-message
+    .form-group
+      label(for='branch') Branch:
+      select#role(name='branch' required='')
+        option(value='') Select a branch
+        option(value='maganjo') Maganjo
+        option(value='matuga') Matuga
+      span#roleError.error-message
+    .form-group
+      label(for='role') Role:
+      select#role(name='role' required='')
+        option(value='') Select a role
+        option(value='director') Director
+        option(value='manager') Manager
+        option(value='agent') Agent
+      span#roleError.error-message
+    .form-group
+      label(for='contact') Contact Number:
+      input#contact(type='text' name='contact' required='')
+      span#contactError.error-message
+    // <button type="submit">Register</button>
+    a.btn.btn-primary(href='agent.html') Register
+  #formMessage
+script(src='signup.js')

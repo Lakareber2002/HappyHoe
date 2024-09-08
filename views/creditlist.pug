@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+  head
+    title Credit List
+    link(rel="stylesheet" href="/css/table.css")     
+  body
+    h1 Credit Entry Form
+    table
+      thead
+        tr
+          th Produce Name
+          th Type of Produce
+          th ProducePrice
+          th Date 
+          th Due Date 
+          th Time
+          th Tonnage
+          th Name
+          th Location
+          th Contact
+          th Branch
+          th Action
+      tbody
+        if credit.length 
+          each creditItem in credit  
+            tr
+              td #{creditItem.producename}
+              td #{creditItem.producetype}
+              td #{creditItem.produceprice}
+              td #{creditItem.date}
+              td #{creditItem.duedate}
+              td #{creditItem.time}
+              td #{creditItem.tonnage}
+              td #{creditItem.name}
+              td #{creditItem.location}
+              td #{creditItem.contact}
+              td #{creditItem.branch}
+              td
+              td #{new Date(creditItem.date).toLocaleString()}
+              td 
+                a(href='/edit-credit/${creditItem._id}' class="edit-btn") Edit
+              td
+                form(method="POST" action="/delete-credit")
+                  input(type="hidden" name="id" value=creditItem._id)
+                  button(class="delete-btn" type="submit") Delete
+        else 
+          tr
+            td(colspan="8") No credit added yet!

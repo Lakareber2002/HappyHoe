@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+  head
+    title Registration List
+    link(rel="stylesheet" href="/css/table.css")
+  body
+    h1 Registration Entry Form
+    table
+      thead
+        tr
+          th Name
+          th Email
+          th Password
+          th Confirm Password
+          th Branch
+          th Role
+          th Contact Number
+          th Action
+      tbody
+        if register.length
+          each register in register 
+            tr
+              td #{register.name}
+              td #{register.email}
+              td #{register.pasword}
+              td #{register.confirmpasword}
+              td #{register.brach}
+              td #{register.role}
+              td #{register.contectNumber}
+              td
+                a(href=`/edit-register/${register._id}` class="edit-btn") Edit
+                form(method="post" action="/deleteRegister" style="display:inline;")
+                  input(type="hidden" name="id" value=sale._id)
+                  button(class="delete-btn" type="submit") Delete
+        else
+          tr
+            td(colspan="9") No register added yet!

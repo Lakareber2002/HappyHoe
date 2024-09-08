@@ -1,0 +1,80 @@
+
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Credit Records Form
+    link(rel='stylesheet' href='/css/credit.css')
+  body
+    nav.navbar.navbar-light.bg-light
+      .container-fluid.bg-primary-subtle
+        a.navbar-brand(href='dashboard.html')
+          img.d-inline-block.align-text-top(src='/image/pl.png' alt='' width='70' height='70')
+    br
+    br
+    br
+    .container
+      h1 Credit Records
+      form#creditForm(onsubmit='return validateForm()')
+        .form-group
+          label(for='name') Name of Produce:
+          select#name(name='producename' required='')
+            option(value='') Select produce
+            option(value='Beans') Beans
+            option(value='CowPeas') Cow Peas
+            option(value='GrainMaize') Grain Maize
+            option(value='Peas') Peas
+            option(value='GroundNuts') Ground Nuts
+            option(value='SoyaBeans') Soya Beans
+          br
+          br
+          label(for='produceType') Type of produce:
+          select#produceType(name='produceType' required='')
+            option(value='') Select produce type
+            option(value='legume') Legume
+            option(value='manager') Cereal
+          br
+          br
+          label(for='producePrice') Produce Price:
+          input#producePrice(type='number' name='producePrice' placeholder='Produce Price' min='0.01' step='0.01' required='')
+          br
+          br
+          label(for='date') Date:
+          input#produceDate(type='date' name='produceDate' required='')
+          br
+          br
+          label(for='date') Due Date:
+          input#produceDate(type='date' name='produceDate' required='')
+          br
+          br
+          label(for='time') Time:
+          input#produceTime(type='time' name='produceTime' placeholder='Time' required='')
+          br
+          br
+          label(for='tonnage') Tonnage:
+          input#produceTonnage(type='number' name='produceTonnage' placeholder='Tonnage (in metric tons)' min='0.1' step='0.1' required='')
+          br
+          br
+          label(for='customerName') Customer&apos;s Name:
+          input#customerName(type='text' name='customerName' placeholder='Customer Name' required='')
+          br
+          br
+          label(for='customerLocation') Customer&apos;s Location:
+          input#customerLocation(type='text' name='customerLocation' placeholder='Customer Location' required='')
+          br
+          br
+          label(for='customerContact') Customer&apos;s Contact:
+          input#customerContact(type='tel' name='customerContact' placeholder="Customer's Contact" pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' required='')
+          br
+          br
+          label(for='branch') Branch:
+          select#branch(name='branch' required='')
+            option(value='') Select branch
+            option(value='maganjo') Maganjo 
+            option(value='matuga') Matuga 
+          br
+          br
+          button(type='submit') Submit
+      ul#produceList
+    script(src='/js/credit.js')

@@ -1,0 +1,38 @@
+
+  body{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('public/image/AdobeStock_729554422_Preview.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  }
+  #form{
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgba(108, 205, 239, 0.4); 
+  backdrop-filter: blur(10px); 
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-align: left;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  height: 50vh;
+  width: 150%;
+  overflow: hidden;
+  display: block;
+  }
+  button{
+  font-size: medium;
+  width: 80px;
+  height: 30px;
+  border-radius: 25px;
+  border: none;
+  background-color: rgb(142, 192, 216);
+  }
+  

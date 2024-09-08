@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Edit Produce
+    Link(rel="stylesheet" href="/css/form.css")     
+  body
+    h2 Edit Produce Details
+    form(action="/update-produce-page?id"+produceItem._id method="POST")
+      select(name="producename")
+        option(value="" disabled selected) Select produce
+        option(value="Beans" selected = produceItem.producename === "Beans") Beans
+        option(value="CowPeas" selected = produceItem.producename === "CowPeas") Cow Peas 
+        option(value="GrainMaize" selected = produceItem.producename === "GrainMaize") Grain  Maize
+        option(value="Peas" selected = produceItem.producename === "Peas") Peas
+        option(value="GroundNuts" selected = produceItem.producename === "GroundNuts") Ground Nuts
+        option(value="SoyaBeans" selected = produceItem.producename === "SoyaBeans") Soya Beans
+
+      input(type="text" name="producetype" placeholder="Produce Type" value=produceItem.produceType)
+      select(name="producetype")
+        option(value="" disabled selected) Select produce type
+        option(value="legumes" selected = produceItem.producename === "legumes") Legumes 
+        option(value="Grains" selected = produceItem.producename === "Grains") Grains 
+      input(type="text" name="date" placeholder="Date" value=produceItem.date)
+      input(type="text" name="time" placeholder="Time" value=produceItem.time)
+      input(type="number" name="tonnage" placeholder="Tonnage (in metric tons)" value=produceItem.tonnage(in metric tons))
+       input(type="text" name="source" placeholder="source of produce" value=produceItem.source)
+      select(name="source")
+        option(value="" disabled selected) Select produce source
+        option(value="localFarms" selected = produceItem.producename === "localFarms") Local Farms
+        option(value="dealers" selected = produceItem.producename === "dealers") Dealers
+        option(value="matugaFarm" selected = produceItem.producename === "matugaFarm") Matuga Farm
+        option(value="maganjoFarm" selected = produceItem.producename === "maganjoFarm") Maganjo Farm 
+        option(value="otherCompanies" selected = produceItem.producename === "otherCompanies") other companies  
+      input(type="number" name="cost" placeholder="Cost" value=produceItem.cost)
+      input(type="text" name="dealers" placeholder="Dealers" value=produceItem.dealers)
+      select(name="branch")
+        option(value="" disabled selected) Select Branch
+        option(value="maganjo" selected = produceItem.branch === "maganjo") Maganjo
+        option(value="matuga" selected = produceItem.branch === "matuga") Matuga 
+        input(type="text" name="contact" placeholder="Contact" value=produceItem.contact)
+      input(type="text" name="price" placeholder="Price to be Sold At" value=produceItem.price)       
+      input(type="submit" value="Save Changes")
+    a(href="/produce-list-page") Go Back To Stock List Page.

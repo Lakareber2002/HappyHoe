@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Edit Credit Sales 
+    Link(rel="stylesheet" href="/css/form.css")     
+  body
+    h2 Edit Credit  Details
+    form(action="/update-credit-page?id"+creditItem._id method="POST")
+      select(name="producename")
+        option(value="" disabled selected) Select produce
+        option(value="Beans" selected = creditItem.producename === "Beans") Beans
+        option(value="CowPeas" selected = creditItem.producename === "CowPeas") Cow Peas 
+        option(value="GrainMaize" selected = creditItem.producename === "GrainMaize") Grain  Maize
+        option(value="Peas" selected = creditItem.producename === "Peas") Peas
+        option(value="GroundNuts" selected = creditItem.producename === "GroundNuts") Ground Nuts
+        option(value="SoyaBeans" selected = creditItem.producename === "SoyaBeans") Soya Beans
+
+      input(type="text" name="producetype" placeholder="Produce Type" value=creditItem.produceType)
+      select(name="producetype")
+        option(value="" disabled selected) Select produce type
+        option(value="legumes" selected = creditItem.producename === "legumes") Legumes 
+        option(value="Grains" selected = creditItem.producename === "Grains") Grains 
+      input(type="text" name="date" placeholder="Date" value=creditItem.date)
+      input(type="text" name="time" placeholder="Time" value=creditItem.time)
+      input(type="text" name="customerName" placeholder="Customer's name" value=creditItem.customerName)
+       input(type="number" name="contact" placeholder="Contact" value=creditItem.contact)
+      select(name="branch")
+        option(value="" disabled selected) Select Branch
+        option(value="maganjo" selected = creditItem.branch === "maganjo") Maganjo
+        option(value="matuga" selected = creditItem.branch === "matuga") Matuga 
+      input(type="submit" value="Save Changes")
+    a(href="/credit-list-page") Go Back Credit List Page.

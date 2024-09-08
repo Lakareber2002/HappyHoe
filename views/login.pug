@@ -1,0 +1,32 @@
+doctype html
+| PASTE YOUR HTML CODE HERE
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
+  link(rel='stylesheet' href='public/css/login.css')
+
+.container
+  form#form.form
+    h2 Login
+    br
+    .form-control
+      label(for='username') Name
+      input#name(type='text' placeholder='Enter username')
+      span#name_error(style='color: red;')
+    br
+    .form-control
+      label(for='email') Email
+      input#email(type='text' placeholder='Enter email')
+    br
+    .form-control
+      label(for='password') Password
+      input#password(type='password' placeholder='Enter password')
+      span#password_error(style='color: red;')
+    br
+    button(type='submit') submit
+    .account
+      p.small.mb-0
+        | Don&apos;t have account? 
+        a(href='./reg.html') create an account
+script(src='js files/login.js')

@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    title Sales List
+    link(rel="stylesheet" href="/css/table.css")
+  body
+    h1 Sales Entry Form
+    table
+      thead
+        tr
+          th Produce Name
+          th Type of Produce
+          th Unit Price (per metric tonne)
+          th Quantity Purchased (metric tonnes)
+          th Price Paid
+          th Date
+          th Time
+          th Branch
+          th Action
+      tbody
+        if sales.length
+          each sale in sales
+            tr
+              td #{sale.producename}
+              td #{sale.producetype}
+              td #{sale.produceprice}
+              td #{sale.quantityPurchased}
+              td #{sale.pricePaid}
+              td #{new Date(sale.date).toLocaleDateString()}
+              td #{new Date(sale.time).toLocaleTimeString()}
+              td #{sale.branch}
+              td
+                a(href=`/edit-sales/${sale._id}` class="edit-btn") Edit
+                form(method="post" action="/deleteSales" style="display:inline;")
+                  input(type="hidden" name="id" value=sale._id)
+                  button(class="delete-btn" type="submit") Delete
+        else
+          tr
+            td(colspan="9") No sales added yet!
