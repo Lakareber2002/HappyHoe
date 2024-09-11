@@ -1,13 +1,12 @@
 doctype html
-| PASTE YOUR HTML CODE HERE
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title Document
-  link(rel='stylesheet' href='public/css/login.css')
+  link(rel='stylesheet' href='/css/login.css')
 
 .container
-  form#form.form
+  form#form.form(action='/start' method='POST')
     h2 Login
     br
     .form-control
@@ -28,5 +27,5 @@ head
     .account
       p.small.mb-0
         | Don&apos;t have account? 
-        a(href='./reg.html') create an account
+        a(href='/register.pug') create an account
 script(src='js files/login.js')

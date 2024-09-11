@@ -1,0 +1,61 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Produce Entry Form
+  link(rel='stylesheet' href='/css/order.css')
+.container
+  h1 Produce Entry Form
+  form#produceForm(action='/Produce' method='POST')
+    label(for='name') Name of Produce:
+    select#name(type='text' name='producename' required='')
+        option(value='') select produce
+        option(value='Beans') Beans
+        option(value='CowPeas') Cow Peas
+        option(value='GrainMaize') Graim Maize
+        option(value='Peas') Peas
+        option(value='GroundNuts') Ground Nuts
+        option(value='SoyaBeans') Soya Beans     
+    label(for='type') Type of Produce:
+    select#type(type='text' name='producetype' required='')
+        option(value='') select produce type
+        option(value='legumes') Legumes  
+        option(value='Grains') Grains
+
+    label(for='date') Date:
+    input#date(type='date' name='date' required='')
+    label(for='time') Time:
+    input#time(type='time' name='time' required='')
+    label(for='tonnage') Tonnage (in metric tons):
+    input#tonnage(type='number' name='tonnage' step='0.01' required='')
+    label(for='cost') Cost:
+    input#cost(type='number' name='cost' step='0.01' required='')
+   
+    label(for='source') source of produce:
+    select#source(type='text' name='source' required='')
+        option(value='') select produce source
+        option(value='localFarms') Local farms
+        option(value='dealers') Dealers
+        option(value='matugaFarm') Matuga farm
+        option(value='maganjoFarm') Maganjo farm
+        option(value='otherCompanies') Other companies
+
+    label(for='dealer') Dealer Name:
+    input#dealer(type='text' name='dealer' required='')
+
+    //- label(for='company') Company's Name:
+    //- input#company(type='text' name='companyname' required='')
+
+    label(for='branch') Branch Name:
+    select#branch(type='text' name='branch' required='')
+        option(value='maganjo') Maganjo
+        option(value='matuga') Matuga 
+    
+    label(for='contact') Contact:
+    input#contact(type='tel' name='contact' required='')
+
+    label(for='price') Price to be Sold At (per unit):
+    input#price(type='number' name='price' )
+    button(type='submit') Submit
+  p#message
+script(src='sales.js')

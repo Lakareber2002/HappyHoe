@@ -31,7 +31,7 @@ const creditSchema = new mongoose.Schema({
         trim: true
     },
     customerContact: {
-        type: Number,
+        type: String,
         trim: true
     },
     branch: {

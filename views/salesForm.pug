@@ -1,0 +1,51 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Sales Records Form
+    link(rel='stylesheet' href='/css/sales.css')
+  body
+    .container
+      h2 Add Sales Record
+      form#salesForm(action='/add_sales' method='POST')
+        .form-group
+          label(for='name') Name of Produce:
+          select#name(name='producename' required='')
+            option(value='') Select produce
+            option(value='Beans') Beans
+            option(value='CowPeas') Cow Peas
+            option(value='GrainMaize') Grain Maize
+            option(value='Peas') Peas
+            option(value='GroundNuts') Ground Nuts
+            option(value='SoyaBeans') Soya Beans
+        .form-group
+          label(for='produceType') Type of produce:
+          select#produceType(name='produceType' required='')
+            option(value='') Select produce type
+            option(value='legume') Legume
+            option(value='manager') Cereal
+        .form-group
+          label(for='unitPrice') Unit Price :
+          input#unitPrice(type='number' name='unitPrice' min='0.01' step='0.01' required='')
+        .form-group
+          label(for='quantityPurchased') Quantity Purchased :
+          input#quantityPurchased(type='number' name='quantityPurchased' min='0.01' step='0.01' required='')
+        .form-group
+          label(for='pricePaid') Price Paid:
+          input#pricePaid(type='number' name='pricePaid' min='0.01' step='0.01' required='')
+        .form-group
+          label(for='date') Date:
+          input#date(type='date' name='date' required='')
+        .form-group
+          label(for='time') Time:
+          input#time(type='time' name='time' required='')
+        .form-group
+          label(for='branch') Branch:
+          select#branch(name='branch' required='')
+            option(value='') Select branch
+            option(value='maganjo') Maganjo
+            option(value='matuga') Matuga
+        .form-group
+          button(type='submit') Add Sales Record
+    script(src='sales.js')

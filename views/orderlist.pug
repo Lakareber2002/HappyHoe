@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    title Order List
+    link(rel='stylesheet', href='/css/table.css')
+  body
+    h1 Order List
+
+    if orders.length
+      table
+        thead
+          tr
+            th Name of Produce
+            th Quantity
+            th Payment Made
+            th Customer's Name
+            th Customer's Contact
+            th Location
+            th Mode of Payment
+            th Date
+            th Time
+            th Edit
+            th Delete
+        tbody
+          each order, index in orders
+            tr
+              td #{order.productName}
+              td #{order.quantity}
+              td #{order.paymentMade}
+              td #{order.customerName}
+              td #{order.customerContact}
+              td #{order.location}
+              td #{order.paymentMode}
+              td #{order.date}
+              td #{order.time}
+              td 
+                a(href=`/edit-order/${order.id}`) Edit
+              td 
+                form(action=`/delete-order/${order.id}`, method='POST')
+                  button(type='submit') Delete
+
+    else
+      p No orders available at the moment.
+
+    // Add a link or button to go to the confirmation page
+    a(href='/order-confirmation') Proceed to Order Confirmation

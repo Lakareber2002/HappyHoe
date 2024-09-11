@@ -4,12 +4,12 @@ const passport = require("passport");
 const Register = require("../models/register");
 
 // GET route for the registration form
-router.get("/addWorker", (req, res) => {
+router.get("/addUser", (req, res) => {
   res.render("register", { title: "Register" });
 });
 
 // POST route for registration
-router.post("/addWorker", async (req, res) => {
+router.post("/addUser", async (req, res) => {
   try {
     // Check if a user with the same email already exists
     const existingUser = await Register.findOne({ email: req.body.email });
@@ -34,7 +34,7 @@ router.post("/addWorker", async (req, res) => {
 
 // GET route for the login form
 router.get("/start", (req, res) => {
-  res.render("login2");
+  res.render("login");
 });
 
 // POST route for login
@@ -42,26 +42,26 @@ router.post("/start", passport.authenticate("local", { failureRedirect: "/start"
   req.session.user = req.user; // Assign session to logged-in user
   
   // Redirect based on user role
-  if (req.user.role === "manager") {
-    res.send("dashboard");
-  } else {
-    res.send("User with that role does not exist in the system");
-  }
+  // if (req.user.role === "manager") {
+  //   res.send("dashboard");
+  // } else {
+  //   res.send("User with that role does not exist in the system");
+  // }
 });
 
 // GET route for logout
-router.get("/logout", (req, res) => {
-  if (req.session) {
-    req.session.destroy((err) => {
-      if (err) {
-        return res.status(500).send("Error logging out");
-      }
-      res.redirect("/");
-    });
-  } else {
-    res.status(400).send("No session found");
-  }
-});
+// router.get("/logout", (req, res) => {
+//   if (req.session) {
+//     req.session.destroy((err) => {
+//       if (err) {
+//         return res.status(500).send("Error logging out");
+//       }
+//       res.redirect("/");
+//     });
+//   } else {
+//     res.status(400).send("No session found");
+//   }
+// });
 
 // GET route for viewing users
 router.get("/viewUser", (req, res) => {

@@ -1,48 +1,52 @@
 doctype html
-html(lang="en")
+html
   head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Produce List
-    link(rel="stylesheet" href="/css/table.css")     
+    link(rel='stylesheet' href='/css/table.css')
   body
-    h1 Produce Entry Form
-    table
-      thead
-        tr
-          th Name of Produce
-          th Type of Produce
-          th Date 
-          th Time 
-          th Tonnage (in metric tons)
-          th Cost 
-          th source of produce
-          th Dealer Name
-          th Branch Name
-          th Contact
-          th Price to be Sold At (per unit)
-          th Action
-      tbody
-        if produce.length 
-          each produceItem in produce 
+    .container
+      h2 Produce List
+
+      if produce.length
+        table
+          thead
             tr
-              td #{produceItem.producename}
-              td #{produceItem.producetype}
-              td #{produceItem.date}
-              td #{produceItem.time}
-              td #{produceItem.tonnage}
-              td #{produceItem.cost}
-              td #{produceItem.source}
-              td #{produceItem.dealer}
-              td #{produceItem.branch}
-              td #{produceItem.contact}
-              td #{producetItem.price}
-              td
-              td #{new Date(produceItem.date).toLocaleString()}
-              td 
-                a(href=/edit-produce/${produceItem._id} class="edit-btn") Edit
-              td
-                form(method="POST" action="/delete-produce")
-                  input(type="hidden" name="id" value=productItem._id)
-                  button(class="delete-btn" type="submit") Delete
-        else 
-          tr
-            td(colspan="8") No produce added yet!
+              th Name of Produce
+              th Type of Produce
+              th Date
+              th Time
+              th Tonnage (metric tons)
+              th Cost
+              th Source
+              th Dealer Name
+              th Branch
+              th Contact
+              th Price to be Sold At
+              th Edit
+              th Delete
+          tbody
+            each prod, index in produce
+              tr
+                td #{prod.producename}
+                td #{prod.producetype}
+                td #{prod.date}
+                td #{prod.time}
+                td #{prod.tonnage}
+                td #{prod.cost}
+                td #{prod.source}
+                td #{prod.dealer}
+                td #{prod.branch}
+                td #{prod.contact}
+                td #{prod.price}
+                td
+                  a(href=`/edit-produce/${prod.id}`) Edit
+                td
+                  form(action=`/delete-produce/${prod.id}`, method='POST')
+                    button(type='submit') Delete
+      else
+        p No produce entries available at the moment.
+
+      // Link to add a new produce entry
+      a(href='/Produce') Add New Produce Entry

@@ -3,7 +3,7 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    background-image: url('public/image/AdobeStock_729554422_Preview.jpeg');
+    background-image: url('/image/AdobeStock_729554422_Preview.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
@@ -14,7 +14,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background: rgba(108, 205, 239, 0.4); 
+    background: rgba(108, 204, 239, 0.068); 
     backdrop-filter: blur(10px); 
     align-items: center;
     justify-content: center;
@@ -47,4 +47,18 @@ select {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+button {
+    background-color: #5bc0de;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #31b0d5;
 }

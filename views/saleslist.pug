@@ -1,39 +1,46 @@
 doctype html
-html(lang="en")
+html
   head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Sales List
-    link(rel="stylesheet" href="/css/table.css")
+    link(rel='stylesheet' href='/css/table.css')
   body
-    h1 Sales Entry Form
-    table
-      thead
-        tr
-          th Produce Name
-          th Type of Produce
-          th Unit Price (per metric tonne)
-          th Quantity Purchased (metric tonnes)
-          th Price Paid
-          th Date
-          th Time
-          th Branch
-          th Action
-      tbody
-        if sales.length
-          each sale in sales
+    .container
+      h2 Sales List
+
+      if sales.length
+        table
+          thead
             tr
-              td #{sale.producename}
-              td #{sale.producetype}
-              td #{sale.produceprice}
-              td #{sale.quantityPurchased}
-              td #{sale.pricePaid}
-              td #{new Date(sale.date).toLocaleDateString()}
-              td #{new Date(sale.time).toLocaleTimeString()}
-              td #{sale.branch}
-              td
-                a(href=`/edit-sales/${sale._id}` class="edit-btn") Edit
-                form(method="post" action="/deleteSales" style="display:inline;")
-                  input(type="hidden" name="id" value=sale._id)
-                  button(class="delete-btn" type="submit") Delete
-        else
-          tr
-            td(colspan="9") No sales added yet!
+              th Name of Produce
+              th Type of Produce
+              th Unit Price 
+              th Quantity Purchased
+              th Price Paid
+              th Date
+              th Time
+              th Branch
+              th Edit
+              th Delete
+          tbody
+            each sale, index in sales
+              tr
+                td #{sale.producename}
+                td #{sale.produceType}
+                td #{sale.unitPrice}
+                td #{sale.quantityPurchased}
+                td #{sale.pricePaid}
+                td #{sale.date}
+                td #{sale.time}
+                td #{sale.branch}
+                td
+                  a(href=`/update-sale`) Edit
+                td
+                  form(action=`/delete-sale/${sale.id}`, method='POST')
+                    button(type='submit') Delete
+      else
+        p No sales records available at the moment.
+
+      // Add a link to go back to the sales form
+      a(href='/add_sales') Add New Sales Record

@@ -1,13 +1,12 @@
 doctype html
-| PASTE YOUR HTML CODE HERE
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title Registration Form
-  link(rel='stylesheet' href='public/css/signup.css')
+  link(rel='stylesheet' href='/css/signup.css')
 .container
   h1 Registration Form
-  form#registrationForm
+  form#registrationForm(action='/addUser' method='post')
     .form-group
       label(for='name') Name:
       input#name(type='text' name='name' required='')
@@ -43,7 +42,7 @@ head
       label(for='contact') Contact Number:
       input#contact(type='text' name='contact' required='')
       span#contactError.error-message
-    // <button type="submit">Register</button>
-    a.btn.btn-primary(href='agent.html') Register
+    br
+    button(type='submit') submit
   #formMessage
 script(src='signup.js')

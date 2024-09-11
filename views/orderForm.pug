@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    title Customer Order Form
+    link(rel='stylesheet', href='/css/order.css')
+  body
+    h1 Customer Order Form
+    form(action='/submit-order', method='post')
+      div
+        label(for='productName') Name of Produce:
+        input(type='text', id='productName', name='productName', required)
+
+      div
+        label(for='quantity') Quantity:
+        input(type='number', id='quantity', name='quantity', required)
+
+      div
+        label(for='paymentMade') Payment Made:
+        input(type='number', id='paymentMade', name='paymentMade', step='0.01', required)
+
+      div
+        label(for='customerName') Customer's Name:
+        input(type='text', id='customerName', name='customerName', required)
+
+      div
+        label(for='customerContact') Customer's Contact:
+        input(type='tel', id='customerContact', name='customerContact', required)
+
+      div
+        label(for='location') Location:
+        input(type='text', id='location', name='location', required)
+
+      div
+        label(for='paymentMode') Mode of Payment:
+        select(id='paymentMode', name='paymentMode', required)
+          option(value='credit') Credit
+          option(value='debit') Debit
+          option(value='cash') Cash
+          option(value='online') Online
+
+      div
+        label(for='date') Date:
+        input(type='date', id='date', name='date', required)
+
+      div
+        label(for='time') Time:
+        input(type='time', id='time', name='time', required)
+
+      div
+        button(type='submit') Submit Order
