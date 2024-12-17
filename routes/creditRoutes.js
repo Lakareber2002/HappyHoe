@@ -1,61 +1,104 @@
 const express = require('express');
 const router = express.Router();
-
-
-// Import the User model
 const Credit = require('../models/credit');
 
-// Route to get all credit
-router.get('/Credit', (req, res) => {
-    res.render('credit');
-    console.log('credit');
+// Route to render the credit records form
+router.get('/credit', (req, res) => {
+  res.render('creditForm'); // Renders the form to add credit records
 });
 
-//Route for handling the form submission to add new page
-router.post('/Credit', async (req, res) => {
-    try {
-        const newCredit = new Credit(req.body);
-        await newCredit.save();
-        res.redirect('/creditlist');
-    } catch (err) {
-        res.status(400).send('unable to save credit to database');
-        console.log('Error saving credit:', err);
+// Route to handle form submission and save to MongoDB
+router.post('/submit-credit', async (req, res) => {
+  const { 
+    producename, 
+    produceType, 
+    producePrice, 
+    produceTonnage, 
+    customerName, 
+    customerContact, 
+    customerLocation, 
+    branch, 
+    produceDate, 
+    dueDate,   // Ensure dueDate is included in the form
+    produceTime 
+  } = req.body;
+
+  try {
+    const newCredit = new Credit({
+      producename,
+      produceType,
+      producePrice,
+      produceTonnage,
+      customerName,
+      customerLocation,
+      customerContact,
+      branch,
+      produceDate,
+      dueDate,    // Added dueDate
+      produceTime
+    });
+
+    await newCredit.save();
+    res.redirect('/creditlist'); // Redirect to the credit list after saving
+  } catch (error) {
+    console.error('Error saving credit record to database:', error);
+    res.status(500).send('Error saving credit record');
+  }
+});
+
+// Route to display the credit records list
+router.get('/creditlist', async (req, res) => {
+  try {
+    const creditRecords = await Credit.find();
+    res.render('creditlist', { credits: creditRecords }); // Pass the credit records to the Pug template
+  } catch (error) {
+    console.error('Error fetching credit records from database:', error);
+    res.status(500).send('Error fetching credit records');
+  }
+});
+
+// Route to edit credit record (if needed)
+router.get('/edit-credit/:id', async (req, res) => {
+  const creditId = req.params.id;
+
+  try {
+    const creditRecord = await Credit.findById(creditId);
+    if (creditRecord) {
+      res.render('editCredit', { credit: creditRecord }); // Render edit form with current record data
+    } else {
+      res.status(404).send('Credit record not found');
     }
+  } catch (error) {
+    console.error('Error fetching credit record for editing:', error);
+    res.status(500).send('Error fetching credit record for editing');
+  }
 });
 
-// Route for handling the form submission to update a credit
-router.post('/edit_credit/:id', async (req, res) => {
-    try {
-        await Credit.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.redirect('/creditList');
-    } catch (err) {
-        console.error('Error updating credit:', err);
-        res.status(400).send('Unable to update item in the database');
-    }
+// Route to update a credit record
+router.post('/update-credit/:id', async (req, res) => {
+  const creditId = req.params.id;
+  const updatedData = req.body;
+
+  try {
+    await Credit.findByIdAndUpdate(creditId, updatedData, { new: true });
+    res.redirect('/creditlist'); // Redirect to the credit list after updating
+  } catch (error) {
+    console.error('Error updating credit record:', error);
+    res.status(500).send('Error updating credit record');
+  }
 });
 
-// Route to render the credit list page
-router.get('/creditList', async (req, res) => {
-    try {
-        const credit = await Credit.find().sort({ $natural: -1 }); // Sorting the new produce
-        res.render('creditList', {
-            title: 'Credit List',
-           credit
-        });
-    } catch (err) {
-        res.status(400).send('Unable to find items in the database');
-    }
+// Route to delete a credit record
+router.post('/delete-credit/:id', async (req, res) => {
+  const creditId = req.params.id;
+
+  try {
+    await Credit.findByIdAndDelete(creditId);
+    res.redirect('/creditlist'); // Redirect to the credit list after deletion
+  } catch (error) {
+    console.error('Error deleting credit record from database:', error);
+    res.status(500).send('Error deleting credit record');
+  }
 });
 
-// Route for handling credit deletion
-router.post('/deleteCredit', async (req, res) => {
-    try {
-        await Credit.deleteOne({ _id: req.body.id });
-        res.redirect('back');
-    } catch (err) {
-        res.status(404).send('Unable to delete item in the database');
-    }
-});
-
-// Export the router
 module.exports = router;

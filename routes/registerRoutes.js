@@ -22,46 +22,30 @@ router.post("/addUser", async (req, res) => {
     // Register the user with hashed password
     Register.register(user, req.body.password, (err) => {
       if (err) {
-        return res.status(400).render("", { title: "Signup", error: err.message });
+        return res.status(400).render("", { title: "Register", error: err.message });
       }
-      res.redirect("/start");
+      res.redirect("/login");
     });
   } catch (err) {
-    res.status(500).render("register", { title: "Signup", error: "An error occurred during registration." });
-    console.error("Signup user error:", err);
+    res.status(500).render("register", { title: "Register", error: "An error occurred during registration." });
+    console.error("Register user error:", err);
   }
 });
 
 // GET route for the login form
-router.get("/start", (req, res) => {
+router.get("/login", (req, res) => {
   res.render("login");
 });
 
 // POST route for login
-router.post("/start", passport.authenticate("local", { failureRedirect: "/start" }), (req, res) => {
+router.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), (req, res) => {
   req.session.user = req.user; // Assign session to logged-in user
-  
-  // Redirect based on user role
-  // if (req.user.role === "manager") {
-  //   res.send("dashboard");
-  // } else {
-  //   res.send("User with that role does not exist in the system");
-  // }
+
+  // Redirect to the dashboard after successful login
+  res.redirect("/dashboard");
 });
 
-// GET route for logout
-// router.get("/logout", (req, res) => {
-//   if (req.session) {
-//     req.session.destroy((err) => {
-//       if (err) {
-//         return res.status(500).send("Error logging out");
-//       }
-//       res.redirect("/");
-//     });
-//   } else {
-//     res.status(400).send("No session found");
-//   }
-// });
+
 
 // GET route for viewing users
 router.get("/viewUser", (req, res) => {
@@ -70,7 +54,7 @@ router.get("/viewUser", (req, res) => {
 
 // POST route for handling any additional user actions (e.g., delete, update)
 router.post("/viewUser", (req, res) => {
-  // Add logic here as needed (e.g., handling user deletion or updates)
+  
 });
 
 module.exports = router;

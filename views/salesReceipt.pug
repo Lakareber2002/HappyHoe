@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Sales Receipt
+    link(rel='stylesheet' href='/css/receipt.css')
+  body
+    .container
+      img.logo(src='/image/pl.png', alt='Company Logo') 
+      h2 Happy Hoe Grocery 
+      p www.happyhoegrocery.com
+      p P.O BOX 2002
+      p Kampala Matuga-Maganjo
+      p 0778 456 7890/0788896932
+
+      h4 RECEIPT
+
+      table
+        tr
+          th.table-left Branch:
+          td.table-right #{sale.branch}
+        tr
+          th.table-left Produce Type:
+          td.table-right #{sale.produceType}
+        tr
+          th.table-left Tonnage (kg):
+          td.table-right #{sale.quantityPurchased}
+        tr
+          th.table-left Unit Price (UGX):
+          td.table-right #{sale.unitPrice}
+        tr
+          th.table-left Produce Name:
+          td.table-right #{sale.producename}
+        tr
+          th.table-left Price Paid (UGX):
+          td.table-right #{sale.pricePaid}
+        tr
+          th.table-left Date:
+          td.table-right #{sale.date}
+
+      .footer
+        p Thank you for your purchase!
+
+      button#btn-print(type='button' onclick='window.print()') Print Receipt

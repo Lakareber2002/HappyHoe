@@ -14,19 +14,27 @@ const creditSchema = new mongoose.Schema({
         type: Number,
         trim: true
     },
-    date: {
+    produceDate: {
         type: Date,
         trim: true 
     },
-    time: {
+    dueDate: {
+        type: Date,
+        trim: true 
+    },
+    produceTime: {
         type: String,
         trim: true
     },
-    tonnage: {
+    produceTonnage: {
         type: Number,
         trim: true
     },
     customerName: {
+        type: String,
+        trim: true
+    },
+    customerLocation: {
         type: String,
         trim: true
     },

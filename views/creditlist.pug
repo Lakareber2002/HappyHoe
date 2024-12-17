@@ -1,47 +1,76 @@
 doctype html
-html(lang="en")
+html
   head
-    title Credit List
-    link(rel="stylesheet" href="/css/table.css")     
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Credit Records List
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css')
+    link(rel='stylesheet' href='/css/table.css')
   body
-    h1 Credit Entry Form
-    table
-      thead
-        tr
-          th Produce Name
-          th Type of Produce
-          th Produce Price
-          th Date 
-          th Due Date 
-          th Time
-          th Tonnage
-          th Customer's Name 
-          th Customer's Location
-          th Customer's Contact
-          th Branch
-      tbody
-        if credit.length 
-          each creditItem in credit  
+    // Navbar with Logo
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container-fluid
+        // Logo and Brand Name
+        a.navbar-brand(href='/')
+          img(src='/image/pl.png' alt='Logo' width='50' height='50' class='d-inline-block align-text-top')
+          | Credit Management
+        button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarNav
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link.active(aria-current='page', href='/dashboard') Dashboard
+            li.nav-item
+              a.nav-link(href='/Credit') Add Credit
+            li.nav-item
+              a.nav-link(href='/creditsList') Credit List
+
+    .container
+      h2 Credit Records List
+
+      if credits.length
+        table.table.table-striped
+          thead
             tr
-              td #{creditItem.producename}
-              td #{creditItem.producetype}
-              td #{creditItem.produceprice}
-              td #{creditItem.date}
-              td #{creditItem.duedate}
-              td #{creditItem.time}
-              td #{creditItem.tonnage}
-              td #{creditItem.name}
-              td #{creditItem.location}
-              td #{creditItem.contact}
-              td #{creditItem.branch}
-              td
-              td #{new Date(creditItem.date).toLocaleString()}
-              td 
-                a(href='/edit-credit/${creditItem._id}' class="edit-btn") Edit
-              td
-                form(method="POST" action="/delete-credit")
-                  input(type="hidden" name="id" value=creditItem._id)
-                  button(class="delete-btn" type="submit") Delete
-        else 
-          tr
-            td(colspan="8") No credit added yet!
+              th Produce Name
+              th Produce Type
+              th Produce Price
+              th Date
+              th Due Date
+              th Time
+              th Tonnage
+              th Customer Name
+              th Customer Location
+              th Customer Contact
+              th Branch
+              th Edit
+              th Delete
+          tbody
+            each credit in credits
+              tr
+                td #{credit.producename}
+                td #{credit.produceType}
+                td #{credit.producePrice}
+                td #{credit.produceDate}
+                td #{credit.dueDate}
+                td #{credit.produceTime}
+                td #{credit.produceTonnage}
+                td #{credit.customerName}
+                td #{credit.customerLocation}
+                td #{credit.customerContact}
+                td #{credit.branch}
+                td
+                  a(href=`/update-credit/${credit._id}`) Edit
+                td
+                  form(action=`/delete-credit/${credit._id}`, method='POST')
+                    button(type='submit') Delete
+      else
+        p No credit records available at the moment.
+
+      // Add a link to go back to the credit form
+      a(href='/Credit') Add New Credit Record
+      br
+      a(href='/dashboard') Back to Dashboard
+
+    // Bootstrap JS (add at the end of the body)
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js')

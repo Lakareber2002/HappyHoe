@@ -1,47 +1,55 @@
 const express = require('express');
 const router = express.Router();
-const Order = require('../models/order');
-
-let orders = []; // In-memory order storage for demo purposes
+const Order = require('../models/order');  // Assuming your Order schema is already set up in 'models/order'
 
 // Render the order form
 router.get('/order', (req, res) => {
-  res.render('orderForm'); // Render the Pug template for the order form
+  res.render('orderForm');  // Render the Pug template for the order form
 });
 
-// Handle form submission
-router.post('/submit-order', (req, res) => {
+// Handle form submission and save to MongoDB
+router.post('/submit-order', async (req, res) => {
   const { productName, quantity, paymentMade, customerName, customerContact, location, paymentMode, date, time } = req.body;
 
-  // Create a new order object
-  const newOrder = {
-    id: orders.length + 1, // Generate a simple ID (in a real app, use a unique ID)
-    productName,
-    quantity,
-    paymentMade,
-    customerName,
-    customerContact,
-    location,
-    paymentMode,
-    date,
-    time
-  };
+  try {
+    // Create a new Order document (instance of the Order model)
+    const newOrder = new Order({
+      productName,
+      quantity,
+      paymentMade,
+      customerName,
+      customerContact,
+      location,
+      paymentMode,
+      date,
+      time
+    });
 
-  // Add the new order to the orders array
-  orders.push(newOrder);
+    // Save the new order to MongoDB
+    await newOrder.save();
 
-  // Redirect to the order list after submission
-  res.redirect('/orderlist');
+    // Redirect to the order list after successful submission
+    res.redirect('/orderlist');
+  } catch (error) {
+    console.error('Error saving order to database:', error);
+    res.status(500).send('Error saving order');
+  }
 });
 
-// Display the order list
-router.get('/orderlist', (req, res) => {
-  res.render('orderList', { orders }); // Pass the orders array to the Pug template
+// Display the order list, fetching from MongoDB
+router.get('/orderlist', async (req, res) => {
+  try {
+    const orders = await Order.find();  // Fetch all orders from MongoDB
+    res.render('orderList', { orders });  // Pass the orders to the Pug template
+  } catch (error) {
+    console.error('Error fetching orders from database:', error);
+    res.status(500).send('Error fetching orders');
+  }
 });
 
 // Redirect to order confirmation after viewing the order list
 router.get('/order-confirmation', (req, res) => {
-  res.render('orderConfirmation'); // Render the confirmation page
+  res.render('orderConfirmation');  // Render the confirmation page
 });
 
 // Edit order route (not implemented fully)
@@ -52,11 +60,19 @@ router.get('/edit-order/:id', (req, res) => {
 });
 
 // Delete order route
-router.post('/delete-order/:id', (req, res) => {
+router.post('/delete-order/:id', async (req, res) => {
   const orderId = req.params.id;
-  // Logic to delete the order with the given ID
-  orders = orders.filter(order => order.id !== parseInt(orderId, 10)); // Remove order by ID
-  res.redirect('/orderlist'); // Redirect back to the order list
+
+  try {
+    // Delete the order with the given ID from MongoDB
+    await Order.findByIdAndDelete(orderId);
+
+    // Redirect back to the order list after deletion
+    res.redirect('/orderlist');
+  } catch (error) {
+    console.error('Error deleting order from database:', error);
+    res.status(500).send('Error deleting order');
+  }
 });
 
 module.exports = router;

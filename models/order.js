@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const orderSchema = new mongoose.Schema({
-    produceName: {
+    productName: {
         type: String,  
         trim: true
     },

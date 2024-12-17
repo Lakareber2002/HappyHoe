@@ -3,17 +3,33 @@ const router = express.Router();
 
 // Home route
 router.get('/welcome', (req, res) => {
-  res.render('home'); // This will render the home.pug file
+  res.render('home'); 
 });
 
 // Signin route
-router.get('/register', (req, res) => {
-  res.render('register'); // Render the register.pug file
+router.get('/login', (req, res) => {
+  res.render('login'); 
 });
+
+
+// Handle POST request for login form submission
+router.post('/login', (req, res) => {
+  const { name, email, password } = req.body;
+
+  // Simple login validation (replace with actual authentication logic)
+  if (email === "user@example.com" && password === "password123") {
+    // Redirect to dashboard upon successful login
+    return res.redirect('/dashboard');
+  } else {
+    // Redirect back to login with an error message if credentials are invalid
+    return res.redirect('/login?error=Invalid credentials');
+  }
+});
+
 
 // Explore route
 router.get('/landing', (req, res) => {
-  res.render('landing'); // Render the landing.pug file
+  res.render('landing'); 
 });
 
 module.exports = router;

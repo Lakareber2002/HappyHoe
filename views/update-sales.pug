@@ -4,31 +4,41 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Edit Sales 
-    Link(rel="stylesheet" href="/css/form.css")     
+    link(rel="stylesheet" href="/css/form.css")  
+    
   body
     h2 Edit Sales Details
-    form(action="/edit_sales/" + sale._id method="POST" name="editSales")
+
+    form(action="/edit_sales/" + sales._id method="POST")
+      
       select(name="producename")
         option(value="" disabled selected) Select produce
-        option(value="Beans" selected = sales.producename === "Beans") Beans
-        option(value="CowPeas" selected = sales.producename === "CowPeas") Cow Peas 
-        option(value="GrainMaize" selected = sales.producename === "GrainMaize") Grain  Maize
-        option(value="Peas" selected = sales.producename === "Peas") Peas
-        option(value="GroundNuts" selected = sales.producename === "GroundNuts") Ground Nuts
-        option(value="SoyaBeans" selected = sales.producename === "SoyaBeans") Soya Beans
+        option(value="Beans" selected=sales.producename === "Beans") Beans
+        option(value="CowPeas" selected=sales.producename === "CowPeas") Cow Peas 
+        option(value="GrainMaize" selected=sales.producename === "GrainMaize") Grain Maize
+        option(value="Peas" selected=sales.producename === "Peas") Peas
+        option(value="GroundNuts" selected=sales.producename === "GroundNuts") Ground Nuts
+        option(value="SoyaBeans" selected=sales.producename === "SoyaBeans") Soya Beans
 
       input(type="text" name="producetype" placeholder="Type of produce" value=sales.produceType)
       select(name="producetype")
         option(value="" disabled selected) Select produce type
-        option(value="legumes" selected = sales.producename === "legumes") Legumes 
-        option(value="Grains" selected = sales.producename === "Grains") Grains 
+        option(value="legumes" selected=sales.producetype === "legumes") Legumes
+        option(value="Grains" selected=sales.producetype === "Grains") Grains
+
       input(type="number" name="unitPrice" placeholder="Unit Price (per metric tonne)" value=sales.unitPrice)
-      input(type="number" name="quantityPurchased" placeholder="Quantity Purchased (metric tonnes)" value=sales.time)
+
+      input(type="number" name="quantityPurchased" placeholder="Quantity Purchased (metric tonnes)" value=sales.quantityPurchased)
+
       input(type="number" name="pricePaid" placeholder="Price Paid" value=sales.pricePaid)
+
       input(type="date" name="date" placeholder="Date" value=sales.date)
+
       select(name="branch")
         option(value="" disabled selected) Select Branch
-        option(value="maganjo" selected = sales.branch === "maganjo") Maganjo
-        option(value="matuga" selected = sales.branch === "matuga") Matuga 
+        option(value="maganjo" selected=sales.branch === "maganjo") Maganjo
+        option(value="matuga" selected=sales.branch === "matuga") Matuga
+
       input(type="submit" value="Save Changes")
+
     a(href="/sales-list-page") Go Back To Sales List Page.

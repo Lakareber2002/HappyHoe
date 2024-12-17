@@ -2,101 +2,83 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
-    height: 100vh;
-    background-image: url('AdobeStock_729554422_Preview.jpeg');
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('/image/AdobeStock_729554422_Preview.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;
-      
+    background-size: cover; /* Ensures the image covers the entire background */
 }
 
 .navbar {
-    background-color: #7abced; /* Light background for navbar */
+    background-color: rgba(122, 190, 237, 0.8); /* Semi-transparent background for navbar */
     padding: 15px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand img {
     border-radius: 50%;
 }
 
-.employee-table {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background: rgba(108, 205, 239, 0.4); 
-    backdrop-filter: blur(10px); 
-    align-items: center;
-    justify-content: center;
-    color: black;
-    text-align: left;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.main-content {
-    flex: 1;
-    padding: 20px;
-}
-
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.widgets {
-    display: flex;
-    gap: 20px;
+.row {
     margin-top: 20px;
 }
 
-.widget {
-    background-color: rgb(106, 171, 220);
-    border-radius: 5px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1;
+.col-md-4 {
+    display: flex;
+    align-items: stretch;
+    padding: 10px; /* Ensures space between columns */
 }
 
-.progress-bar {
-    background-color: #f0f2f5;
+.card {
     border-radius: 10px;
-    height: 20px;
-    margin-top: 10px;
-    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #d0e6f4; /* Light blue background */
+    flex: 1; /* Ensures all cards are of equal size */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Makes sure all cards are of equal height */
 }
 
-.progress {
-    background-color: #007bff;
-    height: 100%;
-    line-height: 20px;
-    color: white;
-    text-align: center;
-    white-space: nowrap;
-    transition: width 0.3s ease;
+.card-body {
+    padding: 20px;
+    flex: 1; /* Ensures card body takes up available space */
 }
 
-.progress-text {
-    margin-top: 5px;
-    font-size: 0.9em;
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.card-link:hover {
+    text-decoration: underline;
 }
 
 .employee-table {
-    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for table */
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.employee-table h2 {
+.employee-table h4 {
     margin-top: 0;
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 th, td {
@@ -114,4 +96,3 @@ th {
     height: 50px;
     border-radius: 50%;
 }
-

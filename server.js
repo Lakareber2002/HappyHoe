@@ -36,6 +36,7 @@ const salesRoutes = require('./routes/salesRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const landingRoutes = require('./routes/landingRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const salesReceiptRoutes = require('./routes/salesReceiptRoutes');
 
 
 
@@ -104,6 +105,8 @@ app.use('/', salesRoutes);
 app.use('/', homeRoutes);
 app.use('/', landingRoutes);
 app.use('/', orderRoutes);
+app.use('/', salesReceiptRoutes);
+
 
 
 // Example route for confirmation

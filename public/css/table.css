@@ -1,20 +1,37 @@
-/* Global table styles */
+
 body {
     background-image: url('/image/AdobeStock_729554422_Preview.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
+
+.navbar {
+  background-color: rgba(122, 190, 237, 0.8); /* Semi-transparent background for navbar */
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+  border-radius: 50%;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 18px;
     text-align: left;
+    background-color:  rgba(122, 190, 237, 0.8);
   }
   
   table thead th {
@@ -27,17 +44,17 @@ table {
   table tbody td {
     padding: 10px 15px;
     border-bottom: 1px solid white;
-    background: rgba(108, 204, 239, 0.05); /* Semi-transparent background color */
-    backdrop-filter: blur(10px); /* Blurry effect */
+    /* background: rgb(81, 185, 230);  */
+    /* backdrop-filter: blur(10px);  */
     color: black;
   }
   
-  /* Row hover effect */
+  
   table tbody tr:hover {
     background-color: #f5f5f5;
   }
   
-  /* Styling for action buttons */
+  
   .edit-btn, .delete-btn {
     background-color: rgb(19, 70, 101);
     color: white;
@@ -61,7 +78,7 @@ table {
     background-color: #c9302c;
   }
   
-  /* Form and button styling */
+  
   button {
     background-color: transparent;
     border: none;
@@ -74,7 +91,7 @@ table {
     color: #c9302c;
   }
   
-  /* Text alignment for messages */
+  
   td[colspan="8"] {
     text-align: center;
     font-style: italic;
@@ -82,7 +99,7 @@ table {
     padding: 20px;
   }
   
-  /* Header styles */
+  
   h1 {
     font-family: 'Arial', sans-serif;
     text-align: center;

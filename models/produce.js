@@ -20,6 +20,10 @@ const produceSchema = new mongoose.Schema({
         type: Number,
         trim: true
     },
+    cost: {
+        type: Number,
+        trim: true
+    },
     source: {
         type: String,
         trim: true

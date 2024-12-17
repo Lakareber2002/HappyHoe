@@ -22,6 +22,7 @@ html
               th Time
               th Branch
               th Edit
+              th Make Receipt 
               th Delete
           tbody
             each sale, index in sales
@@ -35,7 +36,9 @@ html
                 td #{sale.time}
                 td #{sale.branch}
                 td
-                  a(href=`/update-sale`) Edit
+                  a(href=`/edit_sales`) Edit
+                td 
+                  a.btn.btn-primary.btn-sm(href='/receipt/'+sale.id) Make Receipt
                 td
                   form(action=`/delete-sale/${sale.id}`, method='POST')
                     button(type='submit') Delete
@@ -44,3 +47,5 @@ html
 
       // Add a link to go back to the sales form
       a(href='/add_sales') Add New Sales Record
+      br
+      a(href='/dashboard') Back to Dashboard
